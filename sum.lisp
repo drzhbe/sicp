@@ -1,0 +1,8 @@
+(define (sum term a next b)
+    (cond ((> a b) 0)
+          (else (+ (term a)
+                   (sum term (next a) next b)))
+          )
+    )
+(define (identity x) x)
+(define (inc x) (+ x 1))

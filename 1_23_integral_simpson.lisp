@@ -1,0 +1,27 @@
+; from sum.lisp
+(define (sum term a next b)
+    (cond ((> a b) 0)
+          (else (+ (term a)
+                   (sum term (next a) next b)))
+          )
+    )
+
+(define (cube x) (* x x x))
+
+(define (integral f a b n)
+    (define (integral-with-h h)
+        (define (next x) (+ x h))
+        (define (coefficient x)
+            (cond ((or (= x a) (= x b)) 1)
+                  ((= (remainder (/ (- x a) h) 2) 0) 2)
+                  (else 4))
+            )
+        (define (term x)
+            (* (coefficient x) (f x)))
+
+        (* (/ h 3)
+           (sum term a next b))
+        )
+    (integral-with-h (/ (- b a) n))
+    )
+(integral cube 2 7 10)

@@ -1,0 +1,7 @@
+(define (pascals-triangle-element row elem)
+    (cond ((= row 0) 1)
+        ((or (= elem 0) (= elem row)) 1)
+        (else (+ (pascals-triangle-element (- row 1) (- elem 1))
+                 (pascals-triangle-element (- row 1) elem))))
+    )
+(pascals-triangle-element 4 4)
